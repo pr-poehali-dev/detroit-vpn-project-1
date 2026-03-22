@@ -4,45 +4,38 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 50 10% 90%;
-
-    --card: 0 0% 6%;
-    --card-foreground: 50 10% 90%;
-
-    --popover: 0 0% 6%;
-    --popover-foreground: 50 10% 90%;
-
-    --primary: 47 95% 62%;
-    --primary-foreground: 0 0% 4%;
-
-    --secondary: 220 20% 12%;
-    --secondary-foreground: 50 10% 90%;
-
-    --muted: 220 15% 10%;
-    --muted-foreground: 215 15% 50%;
-
-    --accent: 47 95% 62%;
-    --accent-foreground: 0 0% 4%;
-
+    --background: 0 0% 95%;
+    --foreground: 220 15% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 12%;
+    --primary: 210 75% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 10% 90%;
+    --secondary-foreground: 220 15% 20%;
+    --muted: 220 10% 86%;
+    --muted-foreground: 220 10% 52%;
+    --accent: 210 75% 42%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 50%;
     --destructive-foreground: 0 0% 98%;
-
-    --border: 220 15% 15%;
-    --input: 220 15% 12%;
-    --ring: 47 95% 62%;
-
+    --border: 220 10% 80%;
+    --input: 220 10% 90%;
+    --ring: 210 75% 42%;
     --radius: 0px;
 
-    /* Detroit palette */
-    --detroit-yellow: #f7c948;
-    --detroit-blue: #4a9eca;
-    --detroit-dark: #0a0a0c;
-    --detroit-darker: #060608;
-    --detroit-surface: #0f1014;
-    --detroit-border: #1e2028;
-    --detroit-text: #c8c4b8;
-    --detroit-muted: #5a5a6a;
+    --d-bg: #f0f0f4;
+    --d-surface: #ffffff;
+    --d-surface-2: #e8e8ee;
+    --d-border: #c8c8d4;
+    --d-border-dark: #9898aa;
+    --d-text: #141420;
+    --d-muted2: #80809a;
+    --d-blue: #1560a8;
+    --d-blue-light: #2a80d0;
+    --d-blue-fill: rgba(21, 96, 168, 0.07);
+    --d-corner: #1560a8;
   }
 }
 
@@ -50,407 +43,412 @@
   * {
     @apply border-border;
   }
-
   html {
     scroll-behavior: smooth;
   }
-
   body {
-    background-color: var(--detroit-dark);
-    color: var(--detroit-text);
-    font-family: "IBM Plex Mono", monospace;
-    cursor: crosshair;
+    background: var(--d-bg);
+    color: var(--d-text);
+    font-family: "Rajdhani", sans-serif;
   }
-
   ::selection {
-    background: var(--detroit-yellow);
-    color: #000;
+    background: rgba(21, 96, 168, 0.18);
+    color: var(--d-blue);
   }
-
   ::-webkit-scrollbar {
-    width: 2px;
+    width: 3px;
   }
-
   ::-webkit-scrollbar-track {
-    background: var(--detroit-darker);
+    background: var(--d-bg);
   }
-
   ::-webkit-scrollbar-thumb {
-    background: var(--detroit-yellow);
+    background: var(--d-blue);
   }
 }
 
-/* Glitch effect */
-@keyframes glitch-1 {
+/* ── ANIMATIONS ─────────────────────────────── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes blink {
   0%,
   100% {
-    clip-path: inset(0 0 95% 0);
-    transform: translateX(-4px);
-  }
-  25% {
-    clip-path: inset(30% 0 50% 0);
-    transform: translateX(4px);
+    opacity: 1;
   }
   50% {
-    clip-path: inset(60% 0 20% 0);
-    transform: translateX(-2px);
-  }
-  75% {
-    clip-path: inset(80% 0 5% 0);
-    transform: translateX(2px);
+    opacity: 0;
   }
 }
-
-@keyframes glitch-2 {
-  0%,
-  100% {
-    clip-path: inset(70% 0 10% 0);
-    transform: translateX(4px);
-  }
-  25% {
-    clip-path: inset(10% 0 70% 0);
-    transform: translateX(-4px);
-  }
-  50% {
-    clip-path: inset(40% 0 40% 0);
-    transform: translateX(3px);
-  }
-  75% {
-    clip-path: inset(5% 0 85% 0);
-    transform: translateX(-3px);
-  }
-}
-
-@keyframes scanline {
+@keyframes scan-line {
   0% {
     transform: translateY(-100%);
   }
   100% {
-    transform: translateY(100vh);
+    transform: translateY(400%);
   }
 }
-
-@keyframes blink-cursor {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-up {
+@keyframes progress-fill {
   from {
-    opacity: 0;
-    transform: translateY(20px);
+    width: 0%;
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    width: var(--tw, 100%);
   }
 }
-
-@keyframes pulse-yellow {
+@keyframes pulse-dot {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(247, 201, 72, 0.3);
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.5);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(247, 201, 72, 0);
+    box-shadow: 0 0 0 5px rgba(46, 204, 113, 0);
   }
 }
-
-@keyframes android-boot {
-  0% {
-    opacity: 0;
-    letter-spacing: 0.5em;
-  }
-  100% {
-    opacity: 1;
-    letter-spacing: normal;
-  }
-}
-
-@keyframes counter-up {
+@keyframes corner-grow {
   from {
+    width: 10px;
+    height: 10px;
     opacity: 0;
-    transform: translateY(10px);
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes flicker {
-  0%,
-  95%,
-  100% {
-    opacity: 1;
-  }
-  96% {
-    opacity: 0.4;
-  }
-  97% {
-    opacity: 1;
-  }
-  98% {
-    opacity: 0.2;
-  }
-  99% {
+    width: 20px;
+    height: 20px;
     opacity: 1;
   }
 }
 
-.glitch-text {
+/* ── DETROIT CARD ───────────────────────────── */
+.d-card {
   position: relative;
-}
-
-.glitch-text::before,
-.glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.glitch-text::before {
-  color: var(--detroit-blue);
-  animation: glitch-1 3s infinite;
-  opacity: 0.7;
-}
-
-.glitch-text::after {
-  color: #ff6b6b;
-  animation: glitch-2 3s infinite;
-  opacity: 0.5;
-}
-
-.scanline-overlay::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: rgba(247, 201, 72, 0.06);
-  animation: scanline 8s linear infinite;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-.detroit-card {
-  background: var(--detroit-surface);
-  border: 1px solid var(--detroit-border);
-  position: relative;
+  background: var(--d-surface);
+  border: 1px solid var(--d-border);
   transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    background 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+.d-card:hover {
+  background: var(--d-blue-fill);
+  border-color: var(--d-blue);
+  box-shadow: 0 0 0 1px rgba(21, 96, 168, 0.12);
 }
 
-.detroit-card::before {
-  content: "";
+/* Corner brackets — outside card */
+.d-card .dc-tl,
+.d-card .dc-tr,
+.d-card .dc-bl,
+.d-card .dc-br {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--detroit-yellow);
+  width: 0;
+  height: 0;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+  transition:
+    width 0.22s ease,
+    height 0.22s ease,
+    opacity 0.22s ease;
 }
-
-.detroit-card:hover {
-  border-color: rgba(247, 201, 72, 0.3);
-  box-shadow: 0 0 20px rgba(247, 201, 72, 0.05);
-}
-
-.detroit-card:hover::before {
+.d-card:hover .dc-tl,
+.d-card:hover .dc-tr,
+.d-card:hover .dc-bl,
+.d-card:hover .dc-br {
+  width: 16px;
+  height: 16px;
   opacity: 1;
 }
-
-.detroit-btn {
-  background: var(--detroit-yellow);
-  color: #000;
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  border: none;
-  padding: 14px 32px;
-  cursor: crosshair;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.2s ease;
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+.d-card .dc-tl {
+  top: -5px;
+  left: -5px;
+  border-top: 2px solid var(--d-corner);
+  border-left: 2px solid var(--d-corner);
+}
+.d-card .dc-tr {
+  top: -5px;
+  right: -5px;
+  border-top: 2px solid var(--d-corner);
+  border-right: 2px solid var(--d-corner);
+}
+.d-card .dc-bl {
+  bottom: -5px;
+  left: -5px;
+  border-bottom: 2px solid var(--d-corner);
+  border-left: 2px solid var(--d-corner);
+}
+.d-card .dc-br {
+  bottom: -5px;
+  right: -5px;
+  border-bottom: 2px solid var(--d-corner);
+  border-right: 2px solid var(--d-corner);
 }
 
-.detroit-btn::after {
+/* ── BUTTON ─────────────────────────────────── */
+.d-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 28px;
+  background: var(--d-blue);
+  color: #fff;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--d-blue);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background 0.18s,
+    box-shadow 0.18s,
+    transform 0.1s;
+}
+.d-btn::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  transition: opacity 0.2s;
+  background: rgba(255, 255, 255, 0);
+  transition: background 0.18s;
+}
+.d-btn:hover {
+  background: var(--d-blue-light);
+  box-shadow: 0 4px 18px rgba(21, 96, 168, 0.25);
+}
+.d-btn:active {
+  transform: scale(0.97);
 }
 
-.detroit-btn:hover::after {
-  opacity: 1;
-}
-
-.detroit-btn:active {
-  transform: scale(0.98);
-}
-
-.detroit-btn-outline {
-  background: transparent;
-  color: var(--detroit-yellow);
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  border: 1px solid var(--detroit-yellow);
-  padding: 13px 31px;
-  cursor: crosshair;
-  transition: all 0.2s ease;
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
-}
-
-.detroit-btn-outline:hover {
-  background: rgba(247, 201, 72, 0.08);
-  box-shadow: 0 0 20px rgba(247, 201, 72, 0.15);
-}
-
-.label-tag {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--detroit-yellow);
-  padding: 3px 8px;
-  border: 1px solid rgba(247, 201, 72, 0.3);
-  display: inline-block;
-}
-
-.section-number {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.7rem;
-  color: var(--detroit-muted);
-  letter-spacing: 0.1em;
-}
-
-.nav-link {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  color: var(--detroit-muted);
-  transition: color 0.2s;
+.d-btn-ghost {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 27px;
+  background: transparent;
+  color: var(--d-blue);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--d-blue);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.d-btn-ghost:hover {
+  background: var(--d-blue);
+  color: #fff;
+}
+.d-btn-ghost:active {
+  transform: scale(0.97);
 }
 
-.nav-link::after {
+/* ── NAV LINK ────────────────────────────────── */
+.d-nav {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--d-muted2);
+  position: relative;
+  padding-bottom: 3px;
+  cursor: pointer;
+  transition: color 0.18s;
+  background: none;
+  border: none;
+}
+.d-nav::after {
   content: "";
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
+  height: 1.5px;
   width: 0;
-  height: 1px;
-  background: var(--detroit-yellow);
-  transition: width 0.3s ease;
+  background: var(--d-blue);
+  transition: width 0.22s ease;
 }
-
-.nav-link:hover {
-  color: var(--detroit-yellow);
+.d-nav:hover,
+.d-nav.active {
+  color: var(--d-blue);
 }
-
-.nav-link:hover::after {
+.d-nav:hover::after,
+.d-nav.active::after {
   width: 100%;
 }
 
-.animate-fade-up {
-  animation: fade-up 0.6s ease forwards;
+/* ── TAG / EYEBROW ───────────────────────────── */
+.d-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--d-blue);
+  border: 1px solid rgba(21, 96, 168, 0.3);
+  padding: 2px 8px;
+  background: rgba(21, 96, 168, 0.05);
+  display: inline-block;
+}
+.d-eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--d-muted2);
+  text-transform: uppercase;
+}
+.d-title {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--d-text);
+}
+.d-title .a {
+  color: var(--d-blue);
 }
 
-.animate-android-boot {
-  animation: android-boot 0.8s ease forwards;
+/* ── INPUT ───────────────────────────────────── */
+.d-input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--d-surface-2);
+  border: 1px solid var(--d-border);
+  color: var(--d-text);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  outline: none;
+  transition:
+    border-color 0.18s,
+    background 0.18s,
+    box-shadow 0.18s;
+}
+.d-input:focus {
+  border-color: var(--d-blue);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(21, 96, 168, 0.1);
+}
+.d-input::placeholder {
+  color: #b0b0c0;
 }
 
-.flicker {
-  animation: flicker 10s infinite;
+/* ── STATUS DOT ──────────────────────────────── */
+.d-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2ecc71;
+  display: inline-block;
+  animation: pulse-dot 2.4s infinite;
 }
 
-.cursor-blink {
-  animation: blink-cursor 1s step-end infinite;
+/* ── TERMINAL ────────────────────────────────── */
+.d-terminal {
+  background: var(--d-text);
+  color: #d8e4f0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.73rem;
+  position: relative;
+  overflow: hidden;
+}
+.d-terminal .scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(21, 96, 168, 0.07),
+    transparent
+  );
+  animation: scan-line 5s linear infinite;
+  pointer-events: none;
 }
 
-.hex-grid {
+/* ── GRID BG ─────────────────────────────────── */
+.d-grid {
   background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 39px,
-      rgba(247, 201, 72, 0.03) 39px,
-      rgba(247, 201, 72, 0.03) 40px
-    ),
     repeating-linear-gradient(
       90deg,
       transparent,
-      transparent 39px,
-      rgba(247, 201, 72, 0.03) 39px,
-      rgba(247, 201, 72, 0.03) 40px
+      transparent 79px,
+      rgba(21, 96, 168, 0.035) 79px,
+      rgba(21, 96, 168, 0.035) 80px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(21, 96, 168, 0.035) 79px,
+      rgba(21, 96, 168, 0.035) 80px
     );
 }
 
-.corner-bracket::before,
-.corner-bracket::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
+/* ── FADE UTILITIES ──────────────────────────── */
+.d-fade {
+  animation: fade-in-up 0.5s ease both;
+}
+.d-fade-1 {
+  animation-delay: 0.08s;
+}
+.d-fade-2 {
+  animation-delay: 0.18s;
+}
+.d-fade-3 {
+  animation-delay: 0.28s;
+}
+.d-fade-4 {
+  animation-delay: 0.38s;
+}
+.d-fade-5 {
+  animation-delay: 0.48s;
 }
 
-.corner-bracket::before {
-  top: 0;
-  left: 0;
-  border-top: 1px solid var(--detroit-yellow);
-  border-left: 1px solid var(--detroit-yellow);
+/* ── BLINK ───────────────────────────────────── */
+.d-blink {
+  animation: blink 1s step-end infinite;
 }
 
-.corner-bracket::after {
-  bottom: 0;
-  right: 0;
-  border-bottom: 1px solid var(--detroit-yellow);
-  border-right: 1px solid var(--detroit-yellow);
+/* ── FAQ ROW ─────────────────────────────────── */
+.d-faq {
+  border-bottom: 1px solid var(--d-border);
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.d-faq:hover {
+  background: var(--d-blue-fill);
+}
+.d-faq:first-child {
+  border-top: 1px solid var(--d-border);
 }
 
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4caf50;
-  display: inline-block;
-  animation: pulse-yellow 2s infinite;
-  box-shadow: 0 0 6px #4caf50;
+/* ── HOVER ICON BOX ──────────────────────────── */
+.d-icon-box {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--d-border);
+  background: var(--d-surface-2);
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  flex-shrink: 0;
 }
-
-.divider-line {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--detroit-border),
-    transparent
-  );
-}
-
-.hero-title {
-  font-family: "Oswald", sans-serif;
-  font-weight: 700;
-  line-height: 0.9;
-  text-transform: uppercase;
+.d-card:hover .d-icon-box {
+  background: rgba(21, 96, 168, 0.1);
+  border-color: var(--d-blue);
 }
