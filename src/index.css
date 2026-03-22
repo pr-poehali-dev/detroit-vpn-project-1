@@ -4,89 +4,45 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 4%;
+    --foreground: 50 10% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 6%;
+    --card-foreground: 50 10% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 50 10% 90%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 47 95% 62%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 20% 12%;
+    --secondary-foreground: 50 10% 90%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 10%;
+    --muted-foreground: 215 15% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 47 95% 62%;
+    --accent-foreground: 0 0% 4%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 15% 15%;
+    --input: 220 15% 12%;
+    --ring: 47 95% 62%;
 
-    --radius: 0.5rem;
+    --radius: 0px;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Detroit palette */
+    --detroit-yellow: #f7c948;
+    --detroit-blue: #4a9eca;
+    --detroit-dark: #0a0a0c;
+    --detroit-darker: #060608;
+    --detroit-surface: #0f1014;
+    --detroit-border: #1e2028;
+    --detroit-text: #c8c4b8;
+    --detroit-muted: #5a5a6a;
   }
 }
 
@@ -95,7 +51,406 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    background-color: var(--detroit-dark);
+    color: var(--detroit-text);
+    font-family: "IBM Plex Mono", monospace;
+    cursor: crosshair;
+  }
+
+  ::selection {
+    background: var(--detroit-yellow);
+    color: #000;
+  }
+
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--detroit-darker);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--detroit-yellow);
+  }
+}
+
+/* Glitch effect */
+@keyframes glitch-1 {
+  0%,
+  100% {
+    clip-path: inset(0 0 95% 0);
+    transform: translateX(-4px);
+  }
+  25% {
+    clip-path: inset(30% 0 50% 0);
+    transform: translateX(4px);
+  }
+  50% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translateX(-2px);
+  }
+  75% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translateX(2px);
+  }
+}
+
+@keyframes glitch-2 {
+  0%,
+  100% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translateX(4px);
+  }
+  25% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translateX(-4px);
+  }
+  50% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translateX(3px);
+  }
+  75% {
+    clip-path: inset(5% 0 85% 0);
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes blink-cursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-yellow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(247, 201, 72, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(247, 201, 72, 0);
+  }
+}
+
+@keyframes android-boot {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.5em;
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: normal;
+  }
+}
+
+@keyframes counter-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  95%,
+  100% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.4;
+  }
+  97% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0.2;
+  }
+  99% {
+    opacity: 1;
+  }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: var(--detroit-blue);
+  animation: glitch-1 3s infinite;
+  opacity: 0.7;
+}
+
+.glitch-text::after {
+  color: #ff6b6b;
+  animation: glitch-2 3s infinite;
+  opacity: 0.5;
+}
+
+.scanline-overlay::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(247, 201, 72, 0.06);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.detroit-card {
+  background: var(--detroit-surface);
+  border: 1px solid var(--detroit-border);
+  position: relative;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.detroit-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--detroit-yellow);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.detroit-card:hover {
+  border-color: rgba(247, 201, 72, 0.3);
+  box-shadow: 0 0 20px rgba(247, 201, 72, 0.05);
+}
+
+.detroit-card:hover::before {
+  opacity: 1;
+}
+
+.detroit-btn {
+  background: var(--detroit-yellow);
+  color: #000;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  padding: 14px 32px;
+  cursor: crosshair;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+
+.detroit-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.detroit-btn:hover::after {
+  opacity: 1;
+}
+
+.detroit-btn:active {
+  transform: scale(0.98);
+}
+
+.detroit-btn-outline {
+  background: transparent;
+  color: var(--detroit-yellow);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid var(--detroit-yellow);
+  padding: 13px 31px;
+  cursor: crosshair;
+  transition: all 0.2s ease;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+
+.detroit-btn-outline:hover {
+  background: rgba(247, 201, 72, 0.08);
+  box-shadow: 0 0 20px rgba(247, 201, 72, 0.15);
+}
+
+.label-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--detroit-yellow);
+  padding: 3px 8px;
+  border: 1px solid rgba(247, 201, 72, 0.3);
+  display: inline-block;
+}
+
+.section-number {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--detroit-muted);
+  letter-spacing: 0.1em;
+}
+
+.nav-link {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--detroit-muted);
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--detroit-yellow);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--detroit-yellow);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease forwards;
+}
+
+.animate-android-boot {
+  animation: android-boot 0.8s ease forwards;
+}
+
+.flicker {
+  animation: flicker 10s infinite;
+}
+
+.cursor-blink {
+  animation: blink-cursor 1s step-end infinite;
+}
+
+.hex-grid {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(247, 201, 72, 0.03) 39px,
+      rgba(247, 201, 72, 0.03) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      rgba(247, 201, 72, 0.03) 39px,
+      rgba(247, 201, 72, 0.03) 40px
+    );
+}
+
+.corner-bracket::before,
+.corner-bracket::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+}
+
+.corner-bracket::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--detroit-yellow);
+  border-left: 1px solid var(--detroit-yellow);
+}
+
+.corner-bracket::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--detroit-yellow);
+  border-right: 1px solid var(--detroit-yellow);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4caf50;
+  display: inline-block;
+  animation: pulse-yellow 2s infinite;
+  box-shadow: 0 0 6px #4caf50;
+}
+
+.divider-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--detroit-border),
+    transparent
+  );
+}
+
+.hero-title {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  line-height: 0.9;
+  text-transform: uppercase;
 }
